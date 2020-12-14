@@ -1,0 +1,29 @@
+<ion-card class="modal-wrapper">
+  <ion-toolbar color="danger">
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelar()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edición</ion-title>
+  </ion-toolbar>
+
+  
+  <ion-card-header>
+    <ion-card-title>Nombre</ion-card-title>
+    <ion-input type="text" [(ngModel)]="dato.Nombre"></ion-input>
+    <ion-card-subtitle>Fecha</ion-card-subtitle>
+    <ion-input type="text" [(ngModel)]="dato.Fecha" disabled></ion-input>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-label>Teléfono</ion-label>
+    <ion-input type="tel" maxlength="9" [(ngModel)]="dato.telefono"></ion-input>
+    <ion-label>URL</ion-label>
+    <ion-input type="url" [(ngModel)]="dato.url" disabled></ion-input>
+    <ion-label>Comentarios</ion-label>
+    <ion-textarea [(ngModel)]="dato.comentarios"></ion-textarea>
+    <ion-button (click)="modificarDatos()" expand="block" fill="clear" shape="round">
+      Guardar Cambios
+    </ion-button>
+  </ion-card-content>
+</ion-card>

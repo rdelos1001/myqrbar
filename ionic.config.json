@@ -1,0 +1,8 @@
+{
+  "name": "myqrbar",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}
