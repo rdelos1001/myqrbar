@@ -1,0 +1,25 @@
+<ion-header style="background-color: black;">
+    <ion-toolbar [color]="'dark'">
+      <ion-title class="titulo" >Mi Qr Bar</ion-title>
+      <ion-buttons slot="end">
+        <ion-button 
+          routerLink="/configuracion">
+          <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="container-fluid">
+ 
+    <ion-button (click)="escanear()"
+      id="nuevoCodigo" 
+      color="light">
+        <ion-label><b>ESCANEAR NUEVO CODIGO QR</b></ion-label>
+        <ion-icon slot="end" name="camera"></ion-icon>
+    </ion-button>
+  
+    <ion-button id="baresGuardados" routerLink="/bares" color="warning">
+      <b>BARES GUARDADOS</b>
+    </ion-button>
+</ion-content>

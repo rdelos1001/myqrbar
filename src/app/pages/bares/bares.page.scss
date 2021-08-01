@@ -1,0 +1,74 @@
+.sinDatos{
+    background-color: red;
+    color: white;
+    width: 100%;
+    padding: 1em;
+    text-align: center;
+    display: block;
+    border-radius: 5px;
+}
+.buscar button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.cardBar{
+    width: 85%;
+    margin: 2em 7.5%;
+}
+.cardBar ion-button{
+    width: 75px;
+    height: 75px;
+}
+
+.cardBar label, .cardBar p{
+    padding-right: 56px;
+}
+
+.editarBoton {
+    display: flex;
+}
+.editarBoton > div{
+    margin: 2vw;
+}
+.editarBoton button{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+.editarBoton ion-button{
+    z-index: 1;
+    margin-right: 1em;
+    position: fixed;
+    right: 5%;
+}
+.inputBuscar{
+    width: 125px;
+    transition: all 1s;
+}
+.inputBuscar ion-input{
+    margin-left: 5px;
+}
+.inputBuscar:hover{
+    width: 90%;
+}
+.modal{
+    background-color: black;
+}
+.url{
+    color: blue;
+    text-decoration: underline blue;
+}
+.orderSegment{
+    display: flex;
+    margin-left: 15vw;
+}
+.orderSegment ion-segment{
+    position: absolute;
+    right: 10%;
+    width: 150px;
+}
+ion-range{
+    margin-bottom: 1em;
+    z-index: inherit;
+}

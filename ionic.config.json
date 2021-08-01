@@ -1,5 +1,7 @@
 {
   "name": "miqrbar",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

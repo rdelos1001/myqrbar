@@ -1,0 +1,121 @@
+<app-cabecera [title]="'Bares Guardados'" [bgcolor]="'warning'">
+</app-cabecera>
+
+<ion-content>
+
+  <div *ngIf="existenBares && !mostrarCargando">
+    <div class="editarBoton">
+
+      <div class="inputBuscar">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-primary" type="button" (click)="changeBuscar()">
+              <ion-icon name="search"></ion-icon>
+            </button>
+          </div>
+          <ion-input (ionChange)="buscar()" [(ngModel)]="nombreBuscar" id="buscarInput" type="text" style="visibility: hidden;" class="form-control" placeholder="Buscar..."></ion-input>
+        </div>
+      </div>
+      
+      <ion-button shape="round" color="warning"
+        (click)="mostrarBotones=!mostrarBotones">
+        <span *ngIf="!mostrarBotones">Editar</span>
+        <ion-icon class="px-1" *ngIf="!mostrarBotones" name="list-outline"></ion-icon>
+        <span *ngIf="mostrarBotones">Cancelar</span>
+        <ion-icon *ngIf="mostrarBotones" name="close-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="orderSegment" >
+      <button class="btn btn-outline-success" (click)="presentActionSheet()">Ordenar</button>
+      
+      <ion-segment mode="ios" (ionChange)="invertir(bares)">
+  
+        <ion-segment-button layout="icon-start">
+          <ion-icon name="arrow-up"></ion-icon>
+          <ion-icon name="text"></ion-icon>
+        </ion-segment-button>
+
+        <ion-segment-button layout="icon-start">
+          <ion-icon name="arrow-down"></ion-icon>
+          <ion-icon name="text"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+      
+    <ion-chip class="mt-3" *ngIf="filtros.nombre" color="primary">
+      <ion-label>Nombre</ion-label>
+      <ion-icon name="close-circle" (click)="eliminarFiltroNombre()"></ion-icon>
+    </ion-chip>
+
+    <ion-card class="cardBar" *ngFor="let bar of baresCargados; let i= index">
+      
+      <ion-card-header> 
+       <ion-fab vertical="top" horizontal="end">
+          <ion-fab-button color="danger" *ngIf="mostrarBotones" (click)="borrar(bar,i)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+        <ion-card-title>
+          <strong>
+            {{bar.Nombre}}
+          </strong>
+        </ion-card-title>
+        <ion-card-subtitle>{{bar.Fecha}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <label><strong>Teléfono: </strong>{{bar.telefono}}</label><br>
+        <label><strong>URL: </strong><span (click)="abrirPagina(bar.url)" class="url">{{bar.url}}</span></label><br>
+        
+        <ion-label><b>Valoracion</b></ion-label>
+
+        <ion-range min="1" max="5" step="1" [value]="bar.valoracion" name="valoracion" snaps disabled color="danger">
+            <ion-label slot="start">1</ion-label>
+            <ion-icon slot="start" size="small" color="warning" name="star-outline"></ion-icon>
+            
+            <ion-label slot="end">5</ion-label>
+            <ion-icon slot="end" color="warning" name="star"></ion-icon>
+        </ion-range>
+
+        
+        <label><strong>Comentarios</strong></label><br>
+        <p>{{bar.comentarios}}</p>
+
+
+        <ion-fab *ngIf="mostrarBotones" vertical="bottom" horizontal="start">
+          <ion-fab-button (click)="mostrarModal(bar,i)">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+        <ion-fab vertical="bottom" horizontal="end">
+
+          <ion-fab-button color="success">
+            <ion-icon name="paper-plane-outline"></ion-icon>
+          </ion-fab-button>
+
+          <ion-fab-list side="start">
+
+            <ion-fab-button (click)="compartirWhatsApp(bar)">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+            </ion-fab-button>
+
+            <ion-fab-button (click)="compartirFacebook(bar)">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button *ngIf="bar.telefono!=null" (click)="llamarTelefono(bar)">
+              <ion-icon name="call"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+        </ion-fab>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <span *ngIf="!existenBares && !mostrarCargando" class="sinDatos">
+    <ion-icon name="warning-outline"></ion-icon>
+    <ion-label> NO HAY DATOS ALMACENADOS</ion-label>
+    <ion-icon name="warning-outline"></ion-icon>
+  </span>
+</ion-content>

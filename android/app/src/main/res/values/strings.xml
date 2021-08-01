@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Miqrbar</string>
+    <string name="title_activity_main">Miqrbar</string>
+    <string name="package_name">in.raul_delossantos_cabrera.miqrbar</string>
+    <string name="custom_url_scheme">in.raul_delossantos_cabrera.miqrbar</string>
+</resources>
