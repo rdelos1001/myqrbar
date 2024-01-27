@@ -286,9 +286,6 @@ export class BaresPage implements OnInit {
     await loading.present();
   }
 
-  public changeBuscar(){
-    this.search = !this.search
-  }
   async buscar(){
     var bares:Bar[]= await this._getData.recuperarTodosBares();
     this.nombreBuscar=this.nombreBuscar.toUpperCase();
@@ -309,19 +306,19 @@ export class BaresPage implements OnInit {
           telefono:null,
           valoracion:1,
           comentarios:''
-        })   
+        }).then(()=>this.cargarBares())
       }
     }).catch(err => {
       console.log('Error', err);
       this._tools.presentToast('No se ha podido escanear');
-      this._getData.guardarBar({
-        url:'url12',
-        Fecha:this.obtenerFechaActual(),
-        Nombre:'Bar prueba',
-        telefono:null,
-        valoracion:1,
-        comentarios:''
-      })   
+      // this._getData.guardarBar({
+      //   url:'url12',
+      //   Fecha:this.obtenerFechaActual(),
+      //   Nombre:'Bar prueba',
+      //   telefono:null,
+      //   valoracion:1,
+      //   comentarios:''
+      // },true).then(()=>this.cargarBares())
 
     });
   }
@@ -335,10 +332,11 @@ export class BaresPage implements OnInit {
     }
     
     var mes:string;
-    if(fecha.getMonth()<10 && fecha.getMonth()>=0){
-      mes = '0'+fecha.getMonth();
+    const monthNumber = fecha.getMonth()+1
+    if(monthNumber<10 && monthNumber>=0){
+      mes = '0'+monthNumber;
     }else{
-      mes = fecha.getMonth()+"";
+      mes = monthNumber+"";
     }
 
     var hora:string;
