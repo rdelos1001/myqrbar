@@ -9,8 +9,8 @@ export class ObtenerDatosService {
 
   constructor(private _tools:ToolsService) { }
   
-  async guardarBar(newBar:Bar){
-    if(!await this.existeBar(newBar.url)){
+  async guardarBar(newBar:Bar, forceSave:boolean =false){
+    if(forceSave || !await this.existeBar(newBar.url)){
       newBar.Nombre=newBar.Nombre.toUpperCase();
       localStorage.setItem(newBar.Fecha,JSON.stringify(newBar))
       this._tools.presentToast('Guardando bar como \''+newBar.Nombre+'\'' )
