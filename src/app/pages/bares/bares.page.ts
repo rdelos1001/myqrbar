@@ -29,6 +29,7 @@ export class BaresPage implements OnInit {
   existenBares:boolean=false
   baresCargados: Bar[] = [];
   mostrarBotones: boolean = false;
+  search:boolean = false;
   filtros: any = {
     nombre: false
   }
@@ -37,8 +38,6 @@ export class BaresPage implements OnInit {
   public ngOnInit() {
     this.cargarBares();
     this.statusBar.styleDefault()
-    this.statusBar.backgroundColorByHexString("ffc409");
-
   }
 
   invertir(bares?: Bar[]) {
@@ -168,6 +167,51 @@ export class BaresPage implements OnInit {
     await actionSheet.present();
   }
 
+  async barsettings(bar:Bar,i:number){
+    const actionSheet = await this.actionSheetController.create({
+      buttons: [
+        {
+          text: 'Editar',
+          icon: 'pencil-outline',
+          handler: () => {
+            this.mostrarModal(bar,i)
+          }
+        },
+        {
+          text: 'Llamar',
+          icon: 'call-outline',
+          handler: () => {
+            this.alertLlamar(bar)
+          }
+        },
+        
+        {
+          text: 'Sitio web',
+          icon: 'Earth',
+          handler: () => {
+            this.abrirPagina(bar.url)
+          }
+        },
+        {
+          text: 'Borrar',
+          icon: 'trash',
+          handler: ()=> {
+            this.borrar(bar,i)
+          },
+        },
+        {
+          text: 'Cancelar',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => { }
+        }]
+        ,
+        backdropDismiss:true
+    });
+
+    await actionSheet.present();
+  }
+
   async borrar(bar: Bar, i: number) {
     const alert = await this.alertController.create({
       header: 'Confirmación',
@@ -242,12 +286,7 @@ export class BaresPage implements OnInit {
   }
 
   public changeBuscar(){
-    var input =document.getElementById('buscarInput')
-    if(input.style.visibility!="hidden"){
-      input.style.visibility="hidden"
-    }else{
-      input.style.visibility=""
-    }
+    this.search = !this.search
   }
   async buscar(){
     var bares:Bar[]= await this._getData.recuperarTodosBares();

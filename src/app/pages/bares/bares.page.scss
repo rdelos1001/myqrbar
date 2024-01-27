@@ -14,11 +14,15 @@
 }
 .cardBar{
     width: 85%;
-    margin: 2em 7.5%;
+    margin: 1em;
 }
 .cardBar ion-button{
-    width: 75px;
-    height: 75px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.cardBar ion-button button{
+    padding: 0;
 }
 
 .cardBar label, .cardBar p{
@@ -27,20 +31,13 @@
 
 .editarBoton {
     display: flex;
+    margin-bottom: 20px;
 }
-.editarBoton > div{
-    margin: 2vw;
-}
+
 .editarBoton button{
     width: 45px;
     height: 45px;
     border-radius: 50%;
-}
-.editarBoton ion-button{
-    z-index: 1;
-    margin-right: 1em;
-    position: fixed;
-    right: 5%;
 }
 .inputBuscar{
     width: 125px;
@@ -61,7 +58,7 @@
 }
 .orderSegment{
     display: flex;
-    margin-left: 15vw;
+    justify-content: space-between;
 }
 .orderSegment ion-segment{
     position: absolute;
