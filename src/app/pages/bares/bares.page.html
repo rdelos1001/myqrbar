@@ -1,15 +1,15 @@
 <app-cabecera [title]="'Bar escaner'" [bgcolor]="'warning'">
 </app-cabecera>
 
-<ion-content>
+<ion-content class="ion-padding">
 
   <div *ngIf="existenBares && !mostrarCargando">
     <div class="editarBoton">
 
-      <ion-button fill="clear" (click)="changeBuscar()">
+      <ion-button fill="clear" (click)="search = !search">
         <ion-icon name="search"></ion-icon>
       </ion-button>
-      <ion-input (ionChange)="buscar()" *ngIf="search" [(ngModel)]="nombreBuscar" id="buscarInput" type="text" class="form-control inputBuscar"
+      <ion-input (ionChange)="buscar()" *ngIf="search" [(ngModel)]="nombreBuscar" type="text" class="form-control inputBuscar"
        placeholder="Buscar..."></ion-input>
       
     </div>
@@ -76,6 +76,12 @@
   <span *ngIf="!existenBares && !mostrarCargando" class="sinDatos">
     <img src="/assets/images/JEMA GER 1751-03.jpg" alt="imagen no hay datos">
     <ion-label> NO HAY BARES GUARDADOS </ion-label>
-
   </span>
+
+  <ion-fab slot="fixed" horizontal="center" vertical="bottom">
+    <ion-fab-button (click)="escanear()" color="warning">
+      <ion-icon name="scan"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
