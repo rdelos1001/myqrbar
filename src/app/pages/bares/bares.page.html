@@ -1,4 +1,4 @@
-<app-cabecera [title]="'Bares Guardados'" [bgcolor]="'warning'">
+<app-cabecera [title]="'Bar escaner'" [bgcolor]="'warning'">
 </app-cabecera>
 
 <ion-content>
@@ -74,8 +74,8 @@
     </ion-card>
   </div>
   <span *ngIf="!existenBares && !mostrarCargando" class="sinDatos">
-    <ion-icon name="warning-outline"></ion-icon>
-    <ion-label> NO HAY BARES GUARDADOS ALMACENADOS</ion-label>
-    <ion-icon name="warning-outline"></ion-icon>
+    <img src="/assets/images/JEMA GER 1751-03.jpg" alt="imagen no hay datos">
+    <ion-label> NO HAY BARES GUARDADOS </ion-label>
+
   </span>
 </ion-content>

@@ -293,4 +293,35 @@ export class BaresPage implements OnInit {
     this.nombreBuscar=this.nombreBuscar.toUpperCase();
     this.baresCargados=this._tools.buscarNombre( bares,this.nombreBuscar)
   }
+
+  async escanear(){
+    await this.barcodeScanner.scan().then(barcodeData => {
+      this._tools.abrirPagina(barcodeData.text)
+      console.log(barcodeData)
+      const url=barcodeData.text;
+      const fecha=this.obtenerFechaActual();
+      if(url!=''){
+        this._getData.guardarBar({
+          url:url,
+          Fecha:fecha,
+          Nombre:'Bar '+fecha,
+          telefono:null,
+          valoracion:1,
+          comentarios:''
+        })   
+      }
+    }).catch(err => {
+      console.log('Error', err);
+      this._tools.presentToast('No se ha podido escanear');
+      this._getData.guardarBar({
+        url:'url12',
+        Fecha:this.obtenerFechaActual(),
+        Nombre:'Bar prueba',
+        telefono:null,
+        valoracion:1,
+        comentarios:''
+      })   
+
+    });
+  }
 }

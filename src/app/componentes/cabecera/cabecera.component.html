@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar 
   [color]="bgcolor">
-    <ion-buttons slot="start">
+    <ion-buttons *ngIf="back" slot="start">
       <ion-back-button 
-      [defaultHref]="'inicio'"
+      [defaultHref]="'bares'"
       [mode]="'md'" >
       </ion-back-button>
     </ion-buttons>

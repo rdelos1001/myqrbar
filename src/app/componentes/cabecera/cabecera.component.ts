@@ -11,5 +11,7 @@ export class CabeceraComponent implements OnInit {
   constructor() { }
   @Input() title:string
   @Input() bgcolor:string
+  @Input() back:boolean = false
+
   ngOnInit() {}
 }
