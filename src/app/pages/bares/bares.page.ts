@@ -7,6 +7,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ToolsService } from 'src/app/services/tools.service';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-bares',
@@ -16,7 +17,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class BaresPage implements OnInit {
 
   constructor(private _getData: ObtenerDatosService,
-    private callNumber: CallNumber,
+    private callNumber: CallNumber, private barcodeScanner: BarcodeScanner,
     private statusBar:StatusBar,
     private _tools: ToolsService,
     private modalController: ModalController,
@@ -323,5 +324,45 @@ export class BaresPage implements OnInit {
       })   
 
     });
+  }
+  public obtenerFechaActual(){
+    const fecha= new Date();
+    var dia:string;
+    if(fecha.getDate()<10 && fecha.getDate()>=0){
+      dia = '0'+fecha.getDate();
+    }else{
+      dia = fecha.getDate()+"";
+    }
+    
+    var mes:string;
+    if(fecha.getMonth()<10 && fecha.getMonth()>=0){
+      mes = '0'+fecha.getMonth();
+    }else{
+      mes = fecha.getMonth()+"";
+    }
+
+    var hora:string;
+    if(fecha.getHours()<10 && fecha.getHours()>=0){
+      hora = '0'+fecha.getHours();
+    }else{
+      hora = fecha.getHours()+"";
+    }
+
+    var minutos:string;
+    if(fecha.getMinutes()<10 && fecha.getMinutes()>=0){
+      minutos = '0'+fecha.getMinutes();
+    }else{
+      minutos = fecha.getMinutes()+"";
+    }
+
+    var segundos:string;
+    if(fecha.getSeconds()<10 && fecha.getSeconds()>=0){
+      segundos = '0'+fecha.getSeconds();
+    }else{
+      segundos = fecha.getSeconds()+"";
+    }
+
+    const fechastr= `${dia}-${mes}-${fecha.getFullYear()} ${hora}:${minutos}:${segundos}`
+    return fechastr
   }
 }
